@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>StopAlert</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <section class="phone" aria-label="StopAlert app prototype">
+        <header class="statusbar" aria-hidden="true">
+          <span>09:41</span>
+          <span class="status-icons">5G 100%</span>
+        </header>
+
+        <section id="screen-home" class="screen active">
+          <div class="topline">
+            <div>
+              <p class="kicker">Location alarm</p>
+              <h1>StopAlert</h1>
+            </div>
+            <button class="icon-button" id="permission-button" type="button" aria-label="Permission status" title="Permission status">
+              <span aria-hidden="true">!</span>
+            </button>
+          </div>
+
+          <div id="empty-state" class="center-stage">
+            <div class="route-mark" aria-hidden="true">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+            <h2>Wake up before your stop.</h2>
+            <p>Pick a destination station and StopAlert handles the rest on-device.</p>
+            <button class="primary-action" id="start-flow" type="button">Set Alarm</button>
+          </div>
+
+          <div id="active-card" class="active-card hidden">
+            <div class="active-head">
+              <div>
+                <p class="label">Active alarm</p>
+                <h2 id="active-destination">Amsterdam Centraal</h2>
+              </div>
+              <span class="pulse" aria-label="Tracking active"></span>
+            </div>
+            <div class="distance-grid">
+              <div>
+                <span class="metric" id="distance-remaining">8.4 km</span>
+                <span class="caption">remaining</span>
+              </div>
+              <div>
+                <span class="metric" id="eta-remaining">12 min</span>
+                <span class="caption">estimated</span>
+              </div>
+              <div>
+                <span class="metric" id="lead-display">5 min</span>
+                <span class="caption">lead time</span>
+              </div>
+            </div>
+            <div class="progress-track" aria-hidden="true"><span id="progress-fill"></span></div>
+            <p class="trust-note">Tracking continues in the background. No network calls after setup.</p>
+            <div class="button-row">
+              <button class="secondary-action" id="edit-alarm" type="button">Edit</button>
+              <button class="danger-action" id="cancel-alarm" type="button">Cancel</button>
+            </div>
+          </div>
+        </section>
+
+        <section id="screen-setup" class="screen">
+          <div class="navline">
+            <button class="text-button" id="back-home" type="button">Cancel</button>
+            <span>Set Alarm</span>
+            <span></span>
+          </div>
+
+          <div class="step-panel" id="destination-step">
+            <p class="step-count">Step 1 of 2</p>
+            <h2>Destination station</h2>
+            <label class="search-box">
+              <span>Search</span>
+              <input id="station-search" type="search" placeholder="Station name" autocomplete="off" />
+            </label>
+            <p id="network-message" class="inline-error hidden">Internet is required to search and set an alarm.</p>
+            <div id="recent-block">
+              <p class="list-label">Recent destinations</p>
+              <div id="recent-list" class="station-list"></div>
+            </div>
+            <div id="suggestion-list" class="station-list hidden"></div>
+          </div>
+
+          <div class="step-panel hidden" id="lead-step">
+            <p class="step-count">Step 2 of 2</p>
+            <h2>Lead time</h2>
+            <p class="supporting">Alert me before arriving at <strong id="selected-station-name">the station</strong>.</p>
+            <div class="lead-grid" id="lead-options" role="radiogroup" aria-label="Lead time">
+              <button class="lead-option" data-minutes="2" type="button">2<span>min</span></button>
+              <button class="lead-option selected" data-minutes="5" type="button">5<span>min</span></button>
+              <button class="lead-option" data-minutes="10" type="button">10<span>min</span></button>
+              <button class="lead-option" data-minutes="15" type="button">15<span>min</span></button>
+              <button class="lead-option" data-minutes="20" type="button">20<span>min</span></button>
+            </div>
+            <label class="custom-minutes">
+              <span>Custom minutes</span>
+              <input id="custom-minutes" type="number" min="1" max="60" placeholder="Optional" />
+            </label>
+            <div class="permission-card">
+              <strong>Permissions needed</strong>
+              <p>Always-on location and notifications keep the alarm reliable after you lock the phone.</p>
+            </div>
+            <button class="primary-action" id="confirm-alarm" type="button">Set Alarm</button>
+          </div>
+        </section>
+
+        <section id="screen-fired" class="screen alert-screen">
+          <div class="alert-rings" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          <p class="kicker">Arriving soon</p>
+          <h2 id="fired-destination">Amsterdam Centraal</h2>
+          <p id="fired-copy">You are within your selected lead time.</p>
+          <div class="button-row alert-actions">
+            <button class="secondary-action" id="snooze-alarm" type="button">Snooze</button>
+            <button class="primary-action" id="dismiss-alarm" type="button">Dismiss</button>
+          </div>
+          <p id="snooze-note" class="caption">Snooze is available once for 2 minutes.</p>
+        </section>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>

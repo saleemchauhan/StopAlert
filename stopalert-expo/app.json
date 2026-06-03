@@ -1,0 +1,28 @@
+{
+  "expo": {
+    "name": "StopAlert",
+    "slug": "stopalert",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.stopalert.app",
+      "infoPlist": {
+        "NSLocationWhenInUseUsageDescription": "StopAlert uses your location to estimate when you are approaching your destination station.",
+        "NSLocationAlwaysAndWhenInUseUsageDescription": "StopAlert needs background location access so the alarm can fire while your phone is locked.",
+        "NSUserNotificationsUsageDescription": "StopAlert uses notifications to alert you before your destination."
+      }
+    },
+    "android": {
+      "package": "com.stopalert.app",
+      "permissions": [
+        "ACCESS_COARSE_LOCATION",
+        "ACCESS_FINE_LOCATION",
+        "ACCESS_BACKGROUND_LOCATION",
+        "VIBRATE"
+      ]
+    }
+  }
+}
